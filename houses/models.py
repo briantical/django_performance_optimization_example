@@ -25,7 +25,8 @@ class House(HashableModel):
     """Represent a house with its characteristics."""
 
     # Relations
-    country = models.ForeignKey(Country, related_name='houses')
+    country = models.ForeignKey(
+        Country, related_name='houses', on_delete=models.CASCADE)
 
     # Attributes
     address = models.CharField(max_length=255)
@@ -36,9 +37,12 @@ class House(HashableModel):
     nr_floors = models.PositiveSmallIntegerField(default=1)
     year_built = models.PositiveIntegerField(null=True, blank=True)
     house_color_outside = models.CharField(max_length=20)
-    distance_to_nearest_kindergarten = models.PositiveIntegerField(null=True, blank=True)
-    distance_to_nearest_school = models.PositiveIntegerField(null=True, blank=True)
-    distance_to_nearest_hospital = models.PositiveIntegerField(null=True, blank=True)
+    distance_to_nearest_kindergarten = models.PositiveIntegerField(
+        null=True, blank=True)
+    distance_to_nearest_school = models.PositiveIntegerField(
+        null=True, blank=True)
+    distance_to_nearest_hospital = models.PositiveIntegerField(
+        null=True, blank=True)
     has_cellar = models.BooleanField(default=False)
     has_pool = models.BooleanField(default=False)
     has_garage = models.BooleanField(default=False)

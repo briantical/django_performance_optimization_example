@@ -4,7 +4,6 @@ from rest_framework.response import Response
 
 from houses.models import House, Country
 from houses.serializers import HouseSerializer
-from utils.hash import Hasher
 
 
 class HouseListAPIView(ListAPIView):
@@ -20,8 +19,9 @@ class HouseListAPIView(ListAPIView):
     def list(self, request, *args, **kwargs):
         # Validation code to check for `country` param should be here
         country = self.request.GET.get("country")
+        print('country', country)
 
-        self.country = Hasher.to_object_pk(country)
+        self.country = country["id"] if country else None
         queryset = self.get_queryset()
 
         serializer = self.serializer_class(queryset, many=True)
